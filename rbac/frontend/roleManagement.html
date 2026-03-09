@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Role Management — RBAC System</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+      <div class="brand-text"><div class="name">RBAC System</div><div class="tagline">Access Control</div></div>
+    </div>
+    <nav class="sidebar-nav" id="sidebarNav"></nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar" data-user-initials>?</div>
+        <div class="user-info"><div class="user-name" data-user-name>—</div><div class="user-role" data-user-role>—</div></div>
+        <button class="logout-btn" title="Logout"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-bar">
+      <div class="page-title"><span class="breadcrumb">Home</span><span class="separator">›</span>Role Management</div>
+      <div class="top-bar-actions"><span class="badge badge-role" id="roleLabel">—</span></div>
+    </header>
+    <main class="content-area">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Role Management</div>
+          <div class="section-subtitle">Create and manage system roles</div>
+        </div>
+        <button class="btn btn-primary" id="addRoleBtn" style="display:none" onclick="openAddModal()">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+          New Role
+        </button>
+      </div>
+
+      <!-- System Roles Info Banner -->
+      <div style="background:rgba(59,130,246,0.06);border:1px solid var(--accent-border);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:0.83rem;color:var(--text-secondary)">
+        <strong style="color:var(--accent-light)">ℹ System Roles</strong> — The 4 default roles (SuperAdmin, Admin, Manager, Employee) are protected and cannot be deleted. You can create additional custom roles below.
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>Role Name</th><th>Type</th><th>Created</th><th>Users</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="rolesTableBody">
+            <tr><td colspan="6" class="data-empty"><p>Loading roles...</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Add Role Modal -->
+<div class="modal-overlay" id="roleModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Create New Role</div>
+      <button class="modal-close" onclick="closeModal('roleModal')"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Role Name *</label>
+        <input type="text" id="roleName" class="form-control" placeholder="e.g. ContentManager"/>
+        <div style="margin-top:6px;font-size:0.75rem;color:var(--text-muted)">Use CamelCase, no spaces. e.g. ContentManager, ViewerOnly</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('roleModal')">Cancel</button>
+      <button class="btn btn-primary" id="saveRoleBtn" onclick="saveRole()">Create Role</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/sidebar.js"></script>
+<script src="/js/roles.js"></script>
+</body>
+</html>

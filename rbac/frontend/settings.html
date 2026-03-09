@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings — RBAC System</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+      <div class="brand-text"><div class="name">RBAC System</div><div class="tagline">Access Control</div></div>
+    </div>
+    <nav class="sidebar-nav" id="sidebarNav"></nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar" data-user-initials>?</div>
+        <div class="user-info"><div class="user-name" data-user-name>—</div><div class="user-role" data-user-role>—</div></div>
+        <button class="logout-btn" title="Logout"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-bar">
+      <div class="page-title"><span class="breadcrumb">Home</span><span class="separator">›</span>Settings</div>
+      <div class="top-bar-actions"><span class="badge badge-role" id="roleLabel">—</span></div>
+    </header>
+    <main class="content-area">
+
+      <div class="section-header">
+        <div>
+          <div class="section-title">System Settings</div>
+          <div class="section-subtitle">Manage application configuration and your account</div>
+        </div>
+      </div>
+
+      <div style="display:grid;gap:18px;max-width:680px">
+
+        <!-- Profile Card -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+          <h3 style="font-size:0.95rem;margin-bottom:18px;color:var(--text-primary)">Profile Information</h3>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+            <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--accent),#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:1.2rem;color:#fff" id="profileAvatar">?</div>
+            <div>
+              <div style="font-weight:600;font-size:1rem" id="profileName">—</div>
+              <div style="color:var(--text-secondary);font-size:0.83rem" id="profileEmail">—</div>
+              <div style="margin-top:4px" id="profileRole"></div>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted)">To update profile information, use the Users management page (requires appropriate permissions).</p>
+        </div>
+
+        <!-- System Info -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+          <h3 style="font-size:0.95rem;margin-bottom:18px;color:var(--text-primary)">System Information</h3>
+          <table style="width:100%;border-collapse:collapse">
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;color:var(--text-secondary);font-size:0.85rem;width:160px">Application</td><td style="padding:10px 0;font-size:0.85rem;font-weight:500">RBAC Permission System</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;color:var(--text-secondary);font-size:0.85rem">Version</td><td style="padding:10px 0;font-size:0.85rem;font-weight:500">1.0.0</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;color:var(--text-secondary);font-size:0.85rem">Backend</td><td style="padding:10px 0;font-size:0.85rem;font-weight:500">Node.js + Express</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;color:var(--text-secondary);font-size:0.85rem">Database</td><td style="padding:10px 0;font-size:0.85rem;font-weight:500">SQL Server</td></tr>
+            <tr><td style="padding:10px 0;color:var(--text-secondary);font-size:0.85rem">Auth</td><td style="padding:10px 0;font-size:0.85rem;font-weight:500">JWT (8h expiry)</td></tr>
+          </table>
+        </div>
+
+        <!-- Danger Zone -->
+        <div style="background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius);padding:24px">
+          <h3 style="font-size:0.95rem;margin-bottom:6px;color:var(--danger)">Session</h3>
+          <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:16px">Sign out from your current session.</p>
+          <button class="btn btn-danger" onclick="logout()">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Sign Out
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/sidebar.js"></script>
+<script>
+  const user = requireAuth();
+  if (user) {
+    document.getElementById('roleLabel').textContent   = user.role_name;
+    document.getElementById('profileAvatar').textContent = getInitials(user.name);
+    document.getElementById('profileName').textContent  = user.name;
+    document.getElementById('profileEmail').textContent = user.email;
+    document.getElementById('profileRole').innerHTML    = getRoleChip(user.role_name);
+    loadSidebar('Settings');
+  }
+</script>
+</body>
+</html>
