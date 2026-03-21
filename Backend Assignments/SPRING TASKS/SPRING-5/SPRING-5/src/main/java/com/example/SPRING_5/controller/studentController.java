@@ -42,4 +42,8 @@ public class studentController {
     public List<Student> getOlderThan(@RequestParam int age) {
         return repository.findStudentsOlderThan(age);
     }
+    @GetMapping("/name-and-Id")
+    public List<Student> getByNameAndId(@RequestParam String name,@RequestParam Long id){
+        return repository.findStudentsByNameAndId(name,id);
+    }
 }

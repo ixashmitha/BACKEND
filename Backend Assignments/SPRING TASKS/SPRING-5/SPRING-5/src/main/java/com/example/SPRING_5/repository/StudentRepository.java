@@ -13,6 +13,8 @@ import java.util.List;
 //interface-a blueprint of a class and a contract that defines a set of methods a class must implement
 public interface StudentRepository extends JpaRepository<Student, Long> {
  List<Student> findByName(String name);
+ List<Student> findStudentsByNameAndId(String name,Long Id);
  @Query("SELECT s From Student s WHERE s.age> :age")
     List<Student> findStudentsOlderThan(@Param("age") int age);
 }
+
